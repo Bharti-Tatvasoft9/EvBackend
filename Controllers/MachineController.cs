@@ -9,17 +9,17 @@ namespace EVAPI.Controllers
     [Route("api/[controller]")]
     public class MachineController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly NeondbContext _context;
 
-        public MachineController(AppDbContext context)
+        public MachineController(NeondbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EVMachine>>> GetMachines()
+        public async Task<ActionResult<IEnumerable<Evmachine>>> GetMachines()
         {
-            return await _context.Machines.ToListAsync();
+            return await _context.Evmachines.ToListAsync();
         }
 
     }

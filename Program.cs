@@ -6,8 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add MySQL connection string
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySQL(connectionString));
+builder.Services.AddDbContext<NeondbContext>(options =>
+    options.UseNpgsql(connectionString));
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
