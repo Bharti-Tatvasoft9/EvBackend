@@ -8,6 +8,7 @@ RUN dotnet restore
 
 # Copy the full source and publish
 COPY . . 
+COPY appsettings.json .
 RUN dotnet publish -c Release -o out
 
 # Stage 2: Runtime
