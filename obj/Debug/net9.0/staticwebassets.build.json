@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "s40E9aCqNn9MfWp5cz4RbR08vuTon04yGrN0ZMpgn7g=",
+  "Source": "EVAPI",
+  "BasePath": "_content/EVAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
