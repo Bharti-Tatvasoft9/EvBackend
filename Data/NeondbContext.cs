@@ -16,6 +16,7 @@ public partial class NeondbContext : DbContext
     }
 
     public virtual DbSet<Evmachine> Evmachines { get; set; }
+    public virtual DbSet<ChargingEvent> Chargingevents { get; set; }
 
     //public virtual DbSet<Station> Stations { get; set; }
 
@@ -35,6 +36,20 @@ public partial class NeondbContext : DbContext
             entity.Property(e => e.Machinename)
                 .HasMaxLength(100)
                 .HasColumnName("machinename");
+        });
+
+        modelBuilder.Entity<ChargingEvent>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("chargingevent_pkey");
+
+            entity.ToTable("chargingevent");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Machineid).HasColumnName("machineid");
+            entity.Property(e => e.Status)
+                .HasMaxLength(10)
+                .HasColumnName("status");
+            entity.Property(e => e.Timestamp).HasColumnName("timestamp");
         });
 
 
