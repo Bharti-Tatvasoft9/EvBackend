@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
+builder.Services.AddSingleton<EventHubService>();
 builder.Services.AddDbContext<NeondbContext>(options =>
     options.UseNpgsql(connectionString));
 builder.Services.AddCors(options =>

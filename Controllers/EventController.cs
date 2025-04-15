@@ -2,6 +2,7 @@
 using EVAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EVAPI.Controllers
@@ -11,22 +12,24 @@ namespace EVAPI.Controllers
     public class EventController : ControllerBase
     {
         private readonly NeondbContext _context;
-
-        public EventController(NeondbContext context)
+        private readonly EventHubService _hub;
+        public EventController(NeondbContext context, EventHubService hub)
         {
             _context = context;
+            _hub = hub;
         }
 
 
         [HttpPost("send")]
         public async Task<IActionResult> SendEvent([FromBody] ChargingEvent payload)
         {
-            _context.Chargingevents.Add(payload);
+           
             try
             {
-
-            await _context.SaveChangesAsync();
-            }catch(Exception ex)
+                string json = JsonSerializer.Serialize(payload);
+                await _hub.SendEventAsync(json);
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }

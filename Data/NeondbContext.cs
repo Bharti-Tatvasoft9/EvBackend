@@ -40,11 +40,9 @@ public partial class NeondbContext : DbContext
 
         modelBuilder.Entity<ChargingEvent>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("chargingevent_pkey");
+            entity.HasNoKey();
 
             entity.ToTable("chargingevent");
-
-            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Machineid).HasColumnName("machineid");
             entity.Property(e => e.Status)
                 .HasMaxLength(10)
